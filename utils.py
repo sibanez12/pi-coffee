@@ -1,8 +1,8 @@
 
 import sys
 
-LOG_FILE = sys.stdout
-#LOG_FILE = 'coffee.log'
+#LOG_FILE = sys.stdout
+LOG_FILE = '/home/pi/pi-coffee/coffee.log'
 
 def clear_log():
     if type(LOG_FILE) is str:

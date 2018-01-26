@@ -6,9 +6,9 @@ import RPi.GPIO as GPIO
 from card_reader import CardReader
 from utils import clear_log, printd
 
-
+CARDS_FILE = 'cards.csv'
 OUT_PIN = 7
-UNLOCK_TIME = 3 # seconds
+UNLOCK_TIME = 4 # seconds
 
 
 class AccessSystem(object):
@@ -18,9 +18,10 @@ class AccessSystem(object):
         self.cards_file = cards_file
         # Use RPi pin numbering
         GPIO.setmode(GPIO.BOARD)
+        GPIO.setwarnings(False)
         # setup output pin
         GPIO.setup(OUT_PIN, GPIO.OUT)
-        GPIO.setwarnings(False)
+
 
     def run_access_control(self):
         printd('Starting access control system ...')
@@ -68,7 +69,7 @@ class AccessSystem(object):
 
 def main():
     clear_log()
-    acSys = AccessSystem('cards.csv')
+    acSys = AccessSystem(CARDS_FILE)
     try:
         acSys.run_access_control()
     except:
